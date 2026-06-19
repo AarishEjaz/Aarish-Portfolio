@@ -161,7 +161,7 @@ export default function AboutPage() {
           >
             <motion.h1
               variants={itemVariants}
-              className="text-4xl font-bold leading-tight tracking-tight md:text-5xl lg:text-6xl"
+              className="text-4xl text-white font-bold leading-tight tracking-tight md:text-5xl lg:text-6xl"
             >
               Engineer by mindset,{" "}
               <span className="bg-gradient-to-r from-white via-gray-300 to-gray-500 bg-clip-text text-transparent">
