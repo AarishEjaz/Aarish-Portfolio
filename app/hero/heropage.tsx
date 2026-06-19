@@ -122,7 +122,6 @@ export default function HeroPage() {
   const [typedName, setTypedName] = useState("");
   const [techIndex, setTechIndex] = useState(0);
   const [typedTech, setTypedTech] = useState("");
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { scrollYProgress } = useScroll();
   const progressScaleX = useSpring(scrollYProgress, {
     stiffness: 120,
@@ -175,37 +174,22 @@ export default function HeroPage() {
           initial={{ opacity: 0, y: -18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="fixed right-4 top-5 z-50 md:left-1/2 md:right-auto md:w-[calc(100%-1.5rem)] md:-translate-x-1/2 md:rounded-[1.75rem] md:border md:border-white/12 md:bg-white/8 md:px-4 md:py-3 md:shadow-[0_12px_40px_rgba(0,0,0,0.22)] md:backdrop-blur-xl"
+          className="fixed left-1/2 top-5 z-50 hidden w-[calc(100%-1.5rem)] -translate-x-1/2 rounded-[1.75rem] border border-white/12 bg-white/8 px-4 py-3 shadow-[0_12px_40px_rgba(0,0,0,0.22)] backdrop-blur-xl md:block"
         >
-          <div className="absolute inset-x-0 top-0 hidden h-px overflow-hidden rounded-t-[1.75rem] bg-white/8 md:block">
+          <div className="absolute inset-x-0 top-0 h-px overflow-hidden rounded-t-[1.75rem] bg-white/8">
             <motion.div
               className="h-full origin-left bg-white/80"
               style={{ scaleX: progressScaleX }}
             />
           </div>
 
-          <div className="hidden items-center justify-between gap-4 md:flex">
+          <div className="flex items-center justify-between gap-4">
             <Link
               href="#home"
-              onClick={() => setMobileMenuOpen(false)}
               className="pt-2 text-sm font-semibold uppercase tracking-[0.28em] text-white/90"
             >
               {logo}
             </Link>
-
-            <button
-              type="button"
-              aria-label="Toggle navigation menu"
-              aria-expanded={mobileMenuOpen}
-              onClick={() => setMobileMenuOpen((current) => !current)}
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white transition hover:bg-white/10 md:hidden"
-            >
-              <span className="space-y-1.5">
-                <span className="block h-px w-4 bg-current" />
-                <span className="block h-px w-4 bg-current" />
-                <span className="block h-px w-4 bg-current" />
-              </span>
-            </button>
 
             <div className="hidden items-center gap-2 pt-2 md:flex">
               {navItems.map((item) => (
@@ -219,45 +203,9 @@ export default function HeroPage() {
               ))}
             </div>
           </div>
-
-          <div className="flex md:hidden">
-            <button
-              type="button"
-              aria-label="Toggle navigation menu"
-              aria-expanded={mobileMenuOpen}
-              onClick={() => setMobileMenuOpen((current) => !current)}
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-white/12 bg-black/70 text-white shadow-[0_10px_24px_rgba(0,0,0,0.28)] backdrop-blur-xl transition hover:bg-white/10"
-            >
-              <span className="flex items-center gap-1">
-                <span className="h-1.5 w-1.5 rounded-full bg-current" />
-                <span className="h-1.5 w-1.5 rounded-full bg-current" />
-                <span className="h-1.5 w-1.5 rounded-full bg-current" />
-              </span>
-            </button>
-          </div>
-
-          {mobileMenuOpen ? (
-            <motion.div
-              initial={{ opacity: 0, y: -8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.18, ease: "easeOut" }}
-              className="absolute right-0 top-[calc(100%+0.5rem)] z-50 min-w-44 overflow-hidden rounded-2xl border border-white/10 bg-black/80 backdrop-blur-xl md:right-4"
-            >
-              {navItems.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="block border-b border-white/8 px-4 py-3 text-sm text-gray-200 transition last:border-b-0 hover:bg-white/10 hover:text-white"
-                >
-                  {item.label}
-                </Link>
-              ))}
-            </motion.div>
-          ) : null}
         </motion.nav>
 
-        <div className="flex min-h-[calc(85vh-72px)] items-center px-4 pt-28 md:px-6 lg:px-8">
+        <div className="flex min-h-[calc(85vh-72px)] items-center px-4  md:px-6 md:pt-28 lg:px-8">
         <div className="grid w-full grid-cols-1 items-center gap-8 lg:grid-cols-[minmax(0,1.45fr)_minmax(360px,0.85fr)] lg:gap-4">
           {/* Left Content */}
           <motion.div
