@@ -58,6 +58,13 @@ const skillCategories = [
 ];
 
 const matrixColumns = ["0101", "STACK", "1010", "BUILD", "0011", "FLOW"];
+const fallingPixels = Array.from({ length: 32 }, (_, index) => ({
+  left: 2 + index * 3.05,
+  size: index % 3 === 0 ? 3 : 2,
+  duration: 7 + (index % 5),
+  delay: index * 0.24,
+  opacity: 0.14 + (index % 4) * 0.05,
+}));
 
 export default function SkillsPage() {
   return (
@@ -73,6 +80,28 @@ export default function SkillsPage() {
           animate={{ opacity: [0.34, 0.5, 0.34] }}
           transition={{ duration: 5.2, repeat: Infinity, ease: "easeInOut" }}
         />
+        <div className="absolute inset-0">
+          {fallingPixels.map((pixel, index) => (
+            <motion.span
+              key={`pixel-${pixel.left}-${index}`}
+              aria-hidden="true"
+              className="absolute top-0 block bg-white"
+              style={{
+                left: `${pixel.left}%`,
+                width: `${pixel.size}px`,
+                height: `${pixel.size * 3}px`,
+                opacity: pixel.opacity,
+              }}
+              animate={{ y: ["-10%", "112vh"], opacity: [0, pixel.opacity, pixel.opacity, 0] }}
+              transition={{
+                duration: pixel.duration,
+                delay: pixel.delay,
+                ease: "linear",
+                repeat: Infinity,
+              }}
+            />
+          ))}
+        </div>
         <div className="absolute inset-y-0 right-0 hidden w-[32%] md:block">
           {matrixColumns.map((column, index) => (
             <motion.div

@@ -100,14 +100,21 @@ export default function ProjectsPage() {
                   {/* Background glow only, no card */}
                   <div className="absolute -inset-6 -z-10 bg-white/5 blur-3xl" />
 
-                  <div className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl border border-white/10 bg-neutral-950">
-                    <Image
-                      src={project.image}
-                      alt={`${project.title} screenshot`}
-                      fill
-                      className="object-cover object-top"
-                      sizes="(max-width: 768px) 100vw, 50vw"
+                  <div className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl bg-neutral-950 p-px">
+                    <div
+                      aria-hidden="true"
+                      className="absolute -inset-[22%] rounded-[32px] bg-[conic-gradient(from_0deg,transparent_0deg,transparent_300deg,rgba(255,255,255,0.88)_330deg,transparent_360deg)] blur-xl animate-[spin_5.5s_linear_infinite]"
                     />
+
+                    <div className="relative z-10 h-full w-full overflow-hidden rounded-2xl border border-white/10 bg-neutral-950">
+                      <Image
+                        src={project.image}
+                        alt={`${project.title} screenshot`}
+                        fill
+                        className="object-contain object-center"
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                      />
+                    </div>
                   </div>
 
                   <div className="mt-4 flex items-center justify-between text-xs text-gray-600">

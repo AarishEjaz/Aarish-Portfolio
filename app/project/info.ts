@@ -10,7 +10,7 @@ export const projects = [
       "Created scalable database models for managing CRM entities efficiently.",
     ],
     tech: ["React", "Node.js", "Express", "MongoDB", "REST API"],
-    image: "/projects/beast-crm.png",
+    image: "/crmss.png",
     github: "#",
     live: "#",
   },
